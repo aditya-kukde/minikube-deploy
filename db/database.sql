@@ -10,6 +10,7 @@ CREATE TABLE `BucketList`.`tbl_user` (
 SET @@global.sql_mode= '';
 
 Use BucketList;
+SET @@global.sql_mode= '';
 
 SET @@global.sql_mode= '';
 
