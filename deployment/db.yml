@@ -1,0 +1,37 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: mysql
+        image: bucketlist-db:3
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: '12345678'
+        imagePullPolicy: IfNotPresent
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: database-service
+spec:
+  ports:
+  - protocol: TCP
+    port: 3306
+  selector:
+    app: database        

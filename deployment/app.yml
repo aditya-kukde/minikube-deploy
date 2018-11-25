@@ -1,0 +1,42 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: application
+  template:
+    metadata:
+      labels:
+        app: application
+    spec:
+      containers:
+      - name: application
+        image: bucketlist-app:3
+        ports:
+        - containerPort: 5003
+          protocol: TCP
+        env:
+        - name: DB_USER
+          value: 'root'
+        - name: DB_PASSWORD
+          value: '12345678'
+        - name: DB_HOST
+          value: database-service                              
+        imagePullPolicy: IfNotPresent
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: application-service
+spec:
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 5003
+  selector:
+    app: application
