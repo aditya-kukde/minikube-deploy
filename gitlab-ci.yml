@@ -1,21 +1,36 @@
 stages:
   - Build
+  - Test
   - Deploy
 
-BuildDev:
+Build:
   stage: Build
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - chmod 777 ./devops/scripts/build.bash
-    - ./devops/scripts/build.bash
-    - chmod 777 ./devops/scripts/buildPrometheus.bash
-    - ./devops/scripts/buildPrometheus.bash
+    - chmod 777 ./scripts/build.bash
+    - ./scripts/build.bash
   only:
+    - dev
+    - master
+  tags:
+    - docker-build
+    - aws-cli
+  environment:
+    name: dev
+  when: always
+
+Deploy:
+  stage: Deploy
+  script:
+    - chmod 777 ./scripts/deploy.bash
+    - ./scripts/deploy.bash
+  only:
+    - master
     - dev
   tags:
     - docker-build
     - aws-cli
   environment:
     name: dev
-  when: manual
+  when: always
