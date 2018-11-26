@@ -7,5 +7,6 @@ cd ./db
 docker build -t bucketlist-db:3 .
 
 # Build docker image for web application
+cd ..
 cd ./app
 docker build -t bucketlist-app:3 .

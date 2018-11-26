@@ -17,6 +17,11 @@ This Web Application is deployed as 2 components available as docker images:
 * Database - MYSQL database  
 * Application - Python Flask Web app
 
+### Known Issues and Bugs
+* On signup page after pressing the signup button, the page does not redirect to home page. But the user is created. You can press Signin button and sign in using the created user.  
+* All the scripts should run from minikube-deploy folder to avoid permission issues. 
+* Use .sh files instead of bash for Windows powershell   
+* The application is tested on a Windows 10 machine with virtual box, but it should run without any issues on Linux or MacOS. 
 
 ## Installation
 
