@@ -42,12 +42,17 @@ cd minikube-deploy
 ```
 5. Run the following command to build docker images and publish to minikube repo
 ```shell
-cd minikube-deploy
 .\scripts\build.bash
 ```
 
 6. Finally Run the publish command to create service and deployment for application and database on kubernetes
 ```shell
-cd minikube-deploy
 .\scripts\deploy.bash
 ```
+
+7. To run the application execute the following commands
+```shell
+.\scripts\run.bash
+```
+
+
